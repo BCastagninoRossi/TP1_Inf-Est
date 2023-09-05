@@ -30,8 +30,8 @@ def plot_hists(hists, h_type, bins):
     for i in range(len(hists)):
 
         plt.hist(np.array(hists[i]), bins=bins)
-        plt.title(f"Histograma del {h_type[i][0][0]} de las hojas de clase {h_type[i][0][1]}")
-        plt.xlablel(f"{h_type[0][0]}".capitalize())
+        plt.title(f"Histograma del {h_type[0][i][0]} de las hojas de clase {h_type[0][i][1]}")
+        plt.xlabel(f"{h_type[0][0]}".capitalize())
         plt.ylabel("Frecuencia")
         plt.show()
 
