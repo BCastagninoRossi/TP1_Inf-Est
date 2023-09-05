@@ -15,7 +15,7 @@ uniform_sample = np.random.uniform(low=0, high=1, size=num_samples)
 # plt.grid(True)
 # plt.show()
 
-exp_lambda = 10/60
+exp_lambda = 5/60
 exponential_sample = (-np.log(1-uniform_sample)) / exp_lambda
 
 # plt.figure(figsize=(8, 6))
@@ -84,8 +84,6 @@ def cars_in_queue(time_intervals):
             departure_times.append(accumulated+100)
         else:
             departure_times.append(departure_times[-1]+100)
-    print(arrival_times[0:20])
-    print(departure_times[0:20])
     return arrival_times, departure_times
 
 def generate_queue(arrival_times, departure_times):
