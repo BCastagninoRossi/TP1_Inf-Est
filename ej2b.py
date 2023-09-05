@@ -25,7 +25,7 @@ class2_wid = np.array(c2_width)
 
 
 def testKSnormal(data, data_name):
-    print("DATA: ")
+    print("KOLPOGOROV-SMIRNOV: ")
     print(data_name)
 
     data_test = (data - np.mean(data))/np.std(data)
@@ -38,8 +38,28 @@ def testKSnormal(data, data_name):
         print('Aceptada H_0: se considera distrib normal (p > 0.05)')
     return ks
 
+def testShapironormal(data, data_name):
+    print("SHAPIRO ")
+    print(data_name)
+    # Shapiro - Wilks
+    # Baja cantidad de muestras
+    # se extrae media y varianza para adaptar al test.
+    data_test = (data - np.mean(data))/np.std(data)
+    
+    sh = shapiro(data_test)
+    print (f'Shapiro_est: {sh.statistic} \np_value: {sh.pvalue}')
+    if sh.pvalue < 0.05:
+        print('Rechazada H0: no es distrib normal (p < 0.05)')
+    else:
+        print('Aceptada H0: se considera distrib normal (p > 0.05)')
+    return sh
+
 testKSnormal(class1_len, "Class 1 Length")
+testShapironormal(class1_len, "Class 1 Length")
 testKSnormal(class2_len,"Class 2 Length" )
+testShapironormal(class2_len,"Class 2 Length" )
 testKSnormal(class1_wid, "Class 1 Width")
+testShapironormal(class1_wid, "Class 1 Width")
 testKSnormal(class2_wid, "Class 2 Width")
+testShapironormal(class2_wid, "Class 2 Width")
 
