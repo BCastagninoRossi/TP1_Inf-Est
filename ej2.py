@@ -20,8 +20,8 @@ def generate_hists(file):
 
     h_type = []
     hists = []
-    hists.append(c1_length, c1_width, c2_length, c2_width)
-    h_type.append(("largo", "1"), ("ancho", "1"), ("largo", "2"), ("ancho", "2"), ("largo y ancho", "1"), ("largo y ancho", "2"))
+    hists.append((c1_length, c1_width, c2_length, c2_width))
+    h_type.append((("largo", "1"), ("ancho", "1"), ("largo", "2"), ("ancho", "2"), ("largo y ancho", "1"), ("largo y ancho", "2")))
 
     return hists, h_type
 
@@ -30,8 +30,8 @@ def plot_hists(hists, h_type, bins):
     for i in range(len(hists)):
 
         plt.hist(np.array(hists[i]), bins=bins)
-        plt.title(f"Histograma del {h_type[i][0]} de las hojas de clase {h_type[i][1]}")
-        plt.xlablel(f"{h_type[0]}".capitalize())
+        plt.title(f"Histograma del {h_type[i][0][0]} de las hojas de clase {h_type[i][0][1]}")
+        plt.xlablel(f"{h_type[0][0]}".capitalize())
         plt.ylabel("Frecuencia")
         plt.show()
 
@@ -39,12 +39,12 @@ def plot_hists(hists, h_type, bins):
     ax1 = fig.add_subplot(111, projection='3d')
     ax2 = fig.add_subplot(111, projection='3d')
     
-    hist_c1, c1_l_edges, c1_w_edges = np.histogram2d(hists[0], hists[1], bins=(bins, bins))
-    hist_c2, c2_l_edges, c2_w_edges = np.histogram2d(hists[2], hists[3], bins=(bins, bins))
+    hist_c1, c1_l_edges, c1_w_edges = np.histogram2d(hists[0][0], hists[0][1], bins=(bins, bins))
+    hist_c2, c2_l_edges, c2_w_edges = np.histogram2d(hists[0][2], hists[0][3], bins=(bins, bins))
     frequency_c1 = hist_c1.ravel()
     frequency_c2 = hist_c2.ravel()
-    hist_c1 = np.histogram2d(hists[0], hists[1], bins=bins, weights=frequency_c1)
-    hist_c2 = np.histogram2d(hists[2], hists[3], bins=bins, weights=frequency_c2)
+    hist_c1 = np.histogram2d(hists[0][0], hists[0][1], bins=bins, weights=frequency_c1)
+    hist_c2 = np.histogram2d(hists[0][2], hists[0][3], bins=bins, weights=frequency_c2)
 
     c1_l_midpoints = (c1_l_edges[:-1] + c1_l_edges[1:]) / 2
     c1_w_midpoints = (c1_w_edges[:-1] + c1_w_edges[1:]) / 2
