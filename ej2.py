@@ -28,7 +28,6 @@ def generate_hists(file):
 def plot_hists(hists, h_type, bins):
     
     for i in range(4):
-        print(i)
         plt.hist(np.array(hists[0][i]), bins=bins)
         plt.title(f"Histograma del {h_type[0][i][0]} de las hojas de clase {h_type[0][i][1]}")
         plt.xlabel(f"{h_type[0][i][0]}".capitalize())
@@ -78,11 +77,11 @@ def plot_hists(hists, h_type, bins):
     plt.ylabel("Ancho")
     plt.title("Ancho vs largo de las hojas de clase C1")
     plt.show()
+    
     mc2 = plt.hist2d(hists[0][2], hists[0][3], bins=(bins, bins))
     plt.xlabel("Largo")
     plt.ylabel("Ancho")
     plt.title("Ancho vs largo de las hojas de clase C2")
-
     plt.show()
 
 hists, h_type = generate_hists("hojas_inferencia.csv")
