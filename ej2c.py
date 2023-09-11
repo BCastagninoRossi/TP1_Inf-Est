@@ -41,6 +41,8 @@ print(cuantizacion(class1_len))
 
 cuant_1_len = cuantizacion(class1_len, steps=10)
 cuant_1_wid = cuantizacion(class1_wid, steps=10)
+cuant_2_len = cuantizacion(class2_len, steps=10)
+cuant_2_wid = cuantizacion(class2_wid, steps=10)
 
 # print(f'x: \n {cuan}')
 # print(f'norm_x: \n {cuant_1_len}')
@@ -48,6 +50,18 @@ cuant_1_wid = cuantizacion(class1_wid, steps=10)
 # print(f'norm_y: \n {cuant_1_wid}')
 
 table = stats.contingency.crosstab(cuant_1_len, cuant_1_wid)
+st = stats.chi2_contingency(table[1])
+print(f'p:{st[1]}')
+print(f'rango_x: {table[0][0]}')
+print(f'rango_y: {table[0][1]}')
+print(f'frecuencias:\n {table[1]}')
+if st[1] > 0.05:
+    print(f'Se acepta H0(independencia). st: {st[0]}, p: {st[1]}')
+else:
+    print(f'Se rechaza H0, st: {st[0]}, p: {st[1]}')
+print('\n')
+
+table = stats.contingency.crosstab(cuant_2_len, cuant_2_wid)
 st = stats.chi2_contingency(table[1])
 print(f'p:{st[1]}')
 print(f'rango_x: {table[0][0]}')

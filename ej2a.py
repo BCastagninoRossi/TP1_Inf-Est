@@ -30,7 +30,7 @@ def plot_hists(hists, h_type, bins):
     for i in range(4):
         plt.hist(np.array(hists[0][i]), bins=bins)
         plt.title(f"Histograma del {h_type[0][i][0]} de las hojas de clase {h_type[0][i][1]}")
-        plt.xlabel(f"{h_type[0][i][0]}".capitalize())
+        plt.xlabel(f"{h_type[0][i][0]} en milímetros".capitalize())
         plt.ylabel("Frecuencia")
         plt.show()
 
@@ -60,27 +60,27 @@ def plot_hists(hists, h_type, bins):
     ax2.bar3d(c2_l_mesh.ravel(), c2_w_mesh.ravel(), 0, 1, 1, frequency_c2, shade=True)
 
     # Set labels and titles for subplots
-    ax1.set_xlabel('Largo')
-    ax1.set_ylabel('Ancho')
+    ax1.set_xlabel('Largo en milímetros')
+    ax1.set_ylabel('Ancho en milímetros')
     ax1.set_zlabel('Frecuencia')
     ax1.set_title('Histograma del largo y ancho de las hojas de clase C1')
 
-    ax2.set_xlabel('Largo')
-    ax2.set_ylabel('Ancho')
+    ax2.set_xlabel('Largo en milímetros')
+    ax2.set_ylabel('Ancho en milímetros')
     ax2.set_zlabel('Frecuencia')
     ax2.set_title('Histograma del largo y ancho de las hojas de clase C2')
 
     plt.show()
 
     mc1 = plt.hist2d(hists[0][0], hists[0][1], bins=(bins, bins))
-    plt.xlabel("Largo")
-    plt.ylabel("Ancho")
+    plt.xlabel("Ancho en milímetros")
+    plt.ylabel('Largo en milímetros')
     plt.title("Ancho vs largo de las hojas de clase C1")
     plt.show()
     
     mc2 = plt.hist2d(hists[0][2], hists[0][3], bins=(bins, bins))
-    plt.xlabel("Largo")
-    plt.ylabel("Ancho")
+    plt.xlabel("Ancho en milímetros")
+    plt.ylabel('Largo en milímetros')
     plt.title("Ancho vs largo de las hojas de clase C2")
     plt.show()
 
